@@ -13,9 +13,9 @@ app.get("/", (req, res) => {
 });
 app.get("/api", async (req, res) => {
   try {
-    const data = await nameData();
+    const names = await nameData();
     // console.log(data)
-    res.status(200).json({data});
+    res.status(200).json({names});
   } catch (error) {
     res.status(500).json({
       error: "something went wrong",

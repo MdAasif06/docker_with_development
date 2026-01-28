@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-
+import axios from "axios";
 const URL = "http://localhost:8000/api";
 
 const fetchName = () => {
-  const [names, setNames] = useState([]);
+  const [name, setNames] = useState([]);
   const getNames = async () => {
     try {
-      const res = await fetch(URL);
-      const data = await res.json();
-      setNames(data.data);
+      // const res = await fetch(URL);
+      const res = await axios.get(URL);
+      // const data = await res.json();
+      setNames(res.data.names);
     } catch (error) {
       console.log(error);
     }
@@ -16,11 +17,14 @@ const fetchName = () => {
 
   useEffect(() => {
     getNames();
-  }, [names]);
+  }, [name]);
+
+
   return (
     <div>
+      <h2>Names</h2>
       <ul>
-        {names.map((naam, index) => (
+        {name.map((naam, index) => (
           <li key={index}>{naam}</li>
         ))}
       </ul>
