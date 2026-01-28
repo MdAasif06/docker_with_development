@@ -5,3 +5,6 @@ odin
 hera
 hermes
 ares
+aman
+amsher
+yousuf
