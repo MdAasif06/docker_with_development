@@ -1,23 +1,27 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-const URL = "http://localhost:8000/api";
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
-const fetchName = () => {
-  const [name, setNames] = useState([]);
+const FetchName = () => {
+  const [name, setName] = useState([]);
   const getNames = async () => {
     try {
-      // const res = await fetch(URL);
-      const res = await axios.get(URL);
-      // const data = await res.json();
-      setNames(res.data.names);
+       if (!backendUrl) {
+        throw new Error("Backend URL is undefined");
+      }
+      // const res = await fetch(`${backendUrl}/api`);
+      const res = await axios.get(`${backendUrl}/api`);
+      // const data = await res.json();   //when you used fetch this is mandatory
+      // console.log(data)
+      setName(res.data.names);
     } catch (error) {
-      console.log(error);
+      console.log("API Error",error);
     }
   };
 
   useEffect(() => {
     getNames();
-  }, [name]);
+  }, []);
 
 
   return (
@@ -32,4 +36,4 @@ const fetchName = () => {
   );
 };
 
-export default fetchName;
+export default FetchName;
