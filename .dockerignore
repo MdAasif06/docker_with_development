@@ -3,6 +3,5 @@ node_modules
 .gitignore
 Dockerfile*
 dockerfile*
-frontend
 *.log
 .env
