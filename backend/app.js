@@ -24,6 +24,6 @@ app.get("/api", async (req, res) => {
 });
 
 const PORT = 8000;
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0',() => {
   console.log(`serer is running port at ${PORT}`);
 });
